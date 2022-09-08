@@ -21,20 +21,20 @@ DISPLAY_F = 25
 DISPLAY_G = 24
 #DISPLAY_DP - don't need decimal point
 
-# Light 1
+# RGB LED Light 1
 RGB1 = [LED1R_PIN, LED1G_PIN, LED1B_PIN]
 for pin in RGB1:
     GPIO.setup(pin, GPIO.OUT)
 
-# Light 2
+# RGB LED Light 2
 RGB2 = [LED2R_PIN, LED2G_PIN, LED2B_PIN]
 for pin in RGB2:
     GPIO.setup(pin, GPIO.OUT)
 
-# Button
+# Press Button
 GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-# 7 Segment Display
+# 7-Segments Display
 segments = (DISPLAY_A, DISPLAY_B, DISPLAY_C, DISPLAY_D, DISPLAY_E, DISPLAY_F, DISPLAY_G)
 GPIO.setup(segments, GPIO.OUT, initial=0)
 #            (a,b,c,d,e,f,g, dp)
@@ -88,7 +88,7 @@ try:
                     while j < 4:    # button cooltime of 20 sec
                         sleep(1)
                         j += 1
-            GPIO.output(segments,numDict[-1])  # turns off 7 segment display
+            GPIO.output(segments,numDict[-1])  # turns off 7-segments display
             
 except KeyboardInterrupt:
     GPIO.cleanup()

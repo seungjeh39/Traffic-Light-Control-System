@@ -1,9 +1,8 @@
-# Traffic Light Implementation - Seungjeh Lee
+# Traffic Light Implementation (Interrupt) - Seungjeh Lee
 
 import RPi.GPIO as GPIO
 from time import sleep
 
-GPIO.setmode(GPIO.BCM)
 
 LED1R_PIN = 13
 LED1B_PIN = 19
@@ -20,6 +19,8 @@ DISPLAY_E = 4
 DISPLAY_F = 25
 DISPLAY_G = 24
 #DISPLAY_DP - don't need decimal point
+
+GPIO.setmode(GPIO.BCM)
 
 # RGB LED Light 1
 RGB1 = [LED1R_PIN, LED1G_PIN, LED1B_PIN]
@@ -55,8 +56,10 @@ numDict = {0:(1,1,1,1,1,1,0),
 try:
     while True:
         GPIO.output(LED2G_PIN,1)    # light 2 stays green
+        GPIO.wait_for_edge(BUTTON_PIN,GPIO.BOTH)   
 
-        if (GPIO.input(BUTTON_PIN) == GPIO.HIGH):   # button is pressed
+        if not GPIO.input(BUTTON_PIN):   # button is pressed
+            print("button pressed")
             GPIO.output(LED2G_PIN,0)
             
             for i in range(3):  # blue blink 3 times

@@ -1,5 +1,5 @@
 # Traffic-Light-Control-System
-Implementation of traffic light control system using Raspberry Pi
+Implementation of traffic light control system using Raspberry Pi (Polling & Interrupt method)
 
 
 1. When the button has not been pressed, traffic light 1 stays red and traffic light 2 stays green.
